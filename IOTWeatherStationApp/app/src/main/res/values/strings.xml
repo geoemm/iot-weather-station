@@ -4,4 +4,7 @@
     <string name="humiTxtV">Humidity </string>
     <string name="lightTxtV">Ambient light </string>
     <string name="syncBtn">Sync</string>
+    <string name="tempValue">-- C</string>
+    <string name="humValue">-- %</string>
+    <string name="lightValue">-- %</string>
 </resources>

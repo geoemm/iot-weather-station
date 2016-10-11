@@ -4,7 +4,10 @@
     <string name="humiTxtV">Humidity </string>
     <string name="lightTxtV">Ambient light </string>
     <string name="syncBtn">Sync</string>
-    <string name="tempValue">-- C</string>
+    <string name="tempValue">-- &#x2103;</string>
     <string name="humValue">-- %</string>
     <string name="lightValue">-- %</string>
+    <string name="settings">settings</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">About</string>
 </resources>

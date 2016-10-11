@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">IOT Weather Station</string>
+    <string name="tempTxtV">Temperature </string>
+    <string name="humiTxtV">Humidity </string>
+    <string name="lightTxtV">Ambient light </string>
+    <string name="syncBtn">Sync</string>
 </resources>

@@ -1,6 +1,3 @@
-import webrepl
-webrepl.start()
-
 import dht
 import machine
 import time

@@ -10,8 +10,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mpsp.unipi.iotweatherstation.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/textView_Hum"
+        android:layout_alignStart="@+id/textView_Hum"
+        android:layout_marginBottom="350dp">
+
+        <TextView
+            android:text="@string/lightTxtV"
+            android:layout_width="322dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_Hum"
+            android:layout_alignLeft="@+id/textView_Hum"
+            android:layout_alignStart="@+id/textView_Hum"
+            android:layout_marginTop="150dp"
+            android:id="@+id/textView_light"
+            android:layout_alignRight="@+id/textView_Hum"
+            android:layout_alignEnd="@+id/textView_Hum"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="@string/humiTxtV"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_temp"
+            android:layout_marginTop="90dp"
+            android:id="@+id/textView_Hum"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignRight="@+id/textView_temp"
+            android:layout_alignEnd="@+id/textView_temp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="@string/tempTxtV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_margin="30dp"
+            android:id="@+id/textView_temp"
+            android:textSize="18sp" />
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:text="@string/syncBtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/syncBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="45dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+
 </RelativeLayout>

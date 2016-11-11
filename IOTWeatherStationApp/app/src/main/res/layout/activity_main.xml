@@ -97,4 +97,13 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp" />
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/syncBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp"
+        android:id="@+id/textView" />
+
 </RelativeLayout>

@@ -22,6 +22,7 @@ android {
 dependencies {
     compile 'com.google.firebase:firebase-core:9.8.0'
     compile 'com.google.firebase:firebase-database:9.8.0'
+    compile 'com.google.firebase:firebase-messaging:9.8.0'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

@@ -8,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.mpsp.unipi.iotweatherstation.firebase.MyFirebaseInstanceIDService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);

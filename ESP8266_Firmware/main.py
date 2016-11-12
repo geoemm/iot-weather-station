@@ -1,39 +1,76 @@
+try:
+    import usocket as socket
+except:
+    import socket
+
 import dht
 import machine
 import time
 d = dht.DHT22(machine.Pin(2))
 adc = machine.ADC(0)
 
-html = """<!DOCTYPE html>
-<html>
-    <head> <title>ESP8266 Weather Station</title> </head>
-    <body> <h1>ESP8266 Weather Station</h1>
-        <table border="1"> <tr><th>Pin</th><th>Value</th></tr> %s </table>
-    </body>
-</html>
+CONTENT = b"""\
+HTTP/1.0 200 OK
+
+{
+    "iot_data":{
+        "temperature":"%.2f",
+        "humidity":"%.2f",
+        "luminosity":"%.2f"
+    }
+}
 """
 
-import socket
-addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
+def main(micropython_optimize=False):
+    s = socket.socket()
 
-s = socket.socket()
-s.bind(addr)
-s.listen(1)
+    # Binding to all interfaces - server will be accessible to other hosts!
+    ai = socket.getaddrinfo("0.0.0.0", 8080)
+    # print("Bind address info:", ai)
+    addr = ai[0][-1]
 
-print('listening on', addr)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(addr)
+    s.listen(5)
+    # print("Listening, connect your browser to http://<this_host>:8080/")
 
-while True:
-    cl, addr = s.accept()
-    print('client connected from', addr)
-    cl_file = cl.makefile('rwb', 0)
     while True:
-        line = cl_file.readline()
-        if not line or line == b'\r\n':
-            break
-    time.sleep(1)
-    d.measure()
-    time.sleep(1)
-    rows = ['<tr><td>%s</td><td>%.2f</td></tr><tr><td>%s</td><td>%.2f</td></tr><tr><td>%s</td><td>%d</td></tr>' % ('Temperature (C)', d.temperature(), 'Humidity', d.humidity(), 'Ambient light (%)', adc.read()/10.24)]
-    response = html % '\n'.join(rows)
-    cl.send(response)
-    cl.close()
+        res = s.accept()
+        client_sock = res[0]
+        client_addr = res[1]
+        # print("Client address:", client_addr)
+        # print("Client socket:", client_sock)
+
+        if not micropython_optimize:
+            # To read line-oriented protocol (like HTTP) from a socket (and
+            # avoid short read problem), it must be wrapped in a stream (aka
+            # file-like) object. That's how you do it in CPython:
+            client_stream = client_sock.makefile("rwb")
+        else:
+            # .. but MicroPython socket objects support stream interface
+            # directly, so calling .makefile() method is not required. If
+            # you develop application which will run only on MicroPython,
+            # especially on a resource-constrained embedded device, you
+            # may take this shortcut to save resources.
+            client_stream = client_sock
+
+        # print("Request:")
+        req = client_stream.readline()
+        # print(req)
+        while True:
+            h = client_stream.readline()
+            if h == b"" or h == b"\r\n":
+                break
+            # print(h)
+	time.sleep(1)
+	d.measure()
+	time.sleep(1)
+        client_stream.write(CONTENT % (d.temperature(),d.humidity(),adc.read()/10.24))
+
+        client_stream.close()
+        if not micropython_optimize:
+            client_sock.close()
+        # print()
+
+
+main()

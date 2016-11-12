@@ -10,4 +10,13 @@
     <string name="settings">settings</string>
     <string name="about">About</string>
     <string name="title_activity_about">About</string>
+
+    <!-- About Activity -->
+    <string name="geoEmail">geo.emm@hotmail.com</string>
+    <string name="kozoEmail">g.kozompolis@gmail.com</string>
+    <string name="master_degree_m_sc_in_advanced_information_systems">Master Degree (M.Sc.) in Advanced Information Systems</string>
+    <string name="direction_advanced_software_development_technologies">Direction: Advanced Software Development Technologies</string>
+    <string name="course_software_development_for_mobile_devices">Course: Software Development for Mobile Devices</string>
+    <string name="george_emmanouil_mpsp15025">George Emmanouil MPSP15025</string>
+    <string name="john_kozompolis_mpsp15036">John Kozompolis MPSP15036</string>
 </resources>

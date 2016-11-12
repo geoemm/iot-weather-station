@@ -19,4 +19,8 @@
     <string name="course_software_development_for_mobile_devices">Course: Software Development for Mobile Devices</string>
     <string name="george_emmanouil_mpsp15025">George Emmanouil MPSP15025</string>
     <string name="john_kozompolis_mpsp15036">John Kozompolis MPSP15036</string>
+
+    <!-- Login Activity -->
+    <string name="title_activity_login">Log In</string>
+    <string name="loginBtn">Log in</string>
 </resources>

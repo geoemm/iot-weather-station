@@ -21,17 +21,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:text="@string/loginBtn"
+    <com.google.android.gms.common.SignInButton
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/syncBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="250dp"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp" />
+        android:id="@+id/googleBtn">
+
+    </com.google.android.gms.common.SignInButton>
 
 </android.support.design.widget.CoordinatorLayout>

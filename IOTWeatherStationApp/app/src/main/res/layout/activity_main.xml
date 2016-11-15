@@ -97,13 +97,6 @@
         android:layout_marginBottom="45dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/logout"
-        android:layout_below="@+id/panel"
-
-        android:text="LogOut"/>
 
     <TextView
     android:text="TextView"
@@ -138,4 +131,46 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="87dp"
         android:id="@+id/email" />
+
+    <Button
+        android:text="Send Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendData"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/syncBtn"
+        android:layout_alignStart="@+id/syncBtn"
+        android:layout_alignRight="@+id/syncBtn"
+        android:layout_alignEnd="@+id/syncBtn" />
+
+    <TextView
+        android:text="test database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="32dp"
+        android:id="@+id/cloudTextview" />
+
+    <Button
+        android:text="Users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/users"
+        android:layout_above="@+id/cloudTextview"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/lastData" />
+
 </RelativeLayout>

@@ -21,6 +21,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -43,13 +45,40 @@ public class LoginActivity extends AppCompatActivity {
     public String name;
     public String email;
     public String userId;
+
+    Button logoutBtn,nextBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mGoogleBtn = (SignInButton)findViewById(R.id.googleBtn);
+        logoutBtn = (Button) findViewById(R.id.logoutBtn);
+        nextBtn = (Button) findViewById(R.id.nextBtn);
+
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                intent.putExtra("userId", userId);
+                intent.putExtra("name",name);
+                intent.putExtra("email",email);
+
+                startActivity(intent);
+            }
+        });
 
         mAuth=FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -65,15 +94,9 @@ public class LoginActivity extends AppCompatActivity {
                          userId = user.getUid();
                     }
 
+                    updateUI(true);
 
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                    intent.putExtra("userId", userId);
-                    intent.putExtra("name",name);
-                    intent.putExtra("email",email);
-
-                    startActivity(intent);
                 }
             }
         };
@@ -111,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
 
     }
 
@@ -154,4 +178,35 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void signOut() {
+
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+
+                        // [START_EXCLUDE]
+                        updateUI(false);
+                        // [END_EXCLUDE]
+
+                    }
+                });
+    }
+
+
+
+    private void updateUI(boolean signedIn) {
+        if (signedIn) {
+            findViewById(R.id.googleBtn).setVisibility(View.GONE);
+            findViewById(R.id.logoutBtn).setVisibility(View.VISIBLE);
+            findViewById(R.id.nextBtn).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.googleBtn).setVisibility(View.VISIBLE);
+            findViewById(R.id.logoutBtn).setVisibility(View.GONE);
+            findViewById(R.id.nextBtn).setVisibility(View.GONE);
+        }
+    }
+
+
 }

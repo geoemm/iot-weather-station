@@ -33,40 +33,52 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private SignInButton mGoogleBtn;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient mGoogleApiClient;//Google API pop-up screen about register or login via Google account
     private static final int RC_SIGN_IN=1;
-
     private static final String TAG = "Login_Activity";
-
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    public String name;
-    public String email;
-    public String userId;
-
-    Button logoutBtn,nextBtn;
+    /*
+    Define few strings about saving account data
+      */
+    private String name;
+    private String email;
+    private String userId;
+    /*
+    Define buttons
+     */
+    private Button logoutBtn,nextBtn;
+    private SignInButton mGoogleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*
+        Update UI set visible only the sign-in button
+         */
+        updateUI(false);
+
+        /*
+        Integrate UI buttons to java code
+         */
 
         mGoogleBtn = (SignInButton)findViewById(R.id.googleBtn);
         logoutBtn = (Button) findViewById(R.id.logoutBtn);
         nextBtn = (Button) findViewById(R.id.nextBtn);
 
-
+        /*
+        Set OnClick Listener on logout button for sign-off the account from App. Then someone could participate with other google account
+         */
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signOut();
             }
         });
-
+        /*
+        Set OnClick Listener on Go To App button. User is redirected to Main Activity. Account data pushed to the Main Activity via Intent
+         */
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +92,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
         mAuth=FirebaseAuth.getInstance();
+
+        /*
+        Set Authenticate Listener that if user exists and is authenticated then no login needed and proceed with login in App auto
+         */
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -92,9 +110,12 @@ public class LoginActivity extends AppCompatActivity {
                          name = user.getDisplayName();
                          email = user.getEmail();
                          userId = user.getUid();
+                         Log.d("Email Data:",email);
+                         Log.d("Name Data:",name);
+                         Log.d("User Id Data:",userId);
                     }
 
-                    updateUI(true);
+                    updateUI(true); //Update UI set Google Sign-IN Button unvisible
 
 
                 }
@@ -131,12 +152,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -152,6 +167,8 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 // Google Sign In failed, update UI appropriately
                 // ...
+                Toast.makeText(LoginActivity.this,"Open Wireless Internet OR Data Mobile Provider",Toast.LENGTH_LONG);
+                updateUI(false);
             }
         }
     }
@@ -170,12 +187,20 @@ public class LoginActivity extends AppCompatActivity {
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentication failed. Please Open Wireless Network OR Provider Data",
+                                    Toast.LENGTH_LONG).show();
                         }
                         // ...
                     }
                 });
+
+    }
+
+
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+
 
     }
 

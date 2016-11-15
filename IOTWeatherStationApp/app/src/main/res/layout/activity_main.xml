@@ -15,162 +15,91 @@
         android:layout_height="wrap_content"
         android:id="@+id/panel">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" >
-
-            <TextView
-                android:text="@string/tempTxtV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="16dp"
-                android:id="@+id/textView_temp"
-                android:textSize="18sp"
-                android:layout_toLeftOf="@+id/tempValue"/>
-
-            <TextView
-                android:text="@string/tempValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:id="@+id/tempValue"
-                android:layout_centerHorizontal="false"
-                android:textSize="18sp"
-                android:layout_alignParentRight="true"/>
-
-            <TextView
-                android:text="@string/humiTxtV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView_temp"
-                android:id="@+id/textView_Hum"
-                android:layout_margin="16dp"
-                android:textSize="18sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:text="@string/humValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:id="@+id/humValue"
-                android:layout_centerHorizontal="false"
-                android:textSize="18sp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tempValue"/>
-
-            <TextView
-                android:text="@string/lightTxtV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView_Hum"
-                android:id="@+id/textView_light"
-                android:layout_margin="16dp"
-                android:textSize="18sp"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:text="@string/lightValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:id="@+id/lightValue"
-                android:layout_centerHorizontal="false"
-                android:textSize="18sp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/humValue"/>
-        </RelativeLayout>
     </android.support.v7.widget.CardView>
 
-    <Button
-        android:text="@string/syncBtn"
-        android:layout_width="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/syncBtn"
-        android:layout_alignParentBottom="true"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/tempeture"
+        android:layout_below="@+id/panel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Tempeture" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/humidity"
+        android:layout_below="@+id/tempeture"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Humidity" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ambient"
+        android:layout_below="@+id/humidity"
+        android:layout_alignLeft="@+id/humidity"
+        android:layout_alignStart="@+id/humidity"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Ambient Light" />
 
     <TextView
-    android:text="TextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/userId"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="10dp"
-    android:id="@+id/textView" />
+        android:text="email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:layout_below="@+id/sendData"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        android:text="name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:layout_below="@+id/userId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="52dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="userId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/userId" />
-    <TextView
-        android:text="name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/name" />
-    <TextView
-        android:text="email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/syncBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp"
-        android:id="@+id/email" />
+        android:id="@+id/userId"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/sendData"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Send Data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sendData"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/syncBtn"
-        android:layout_alignStart="@+id/syncBtn"
-        android:layout_alignRight="@+id/syncBtn"
-        android:layout_alignEnd="@+id/syncBtn" />
-
-    <TextView
-        android:text="test database"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginTop="32dp"
-        android:id="@+id/cloudTextview" />
-
-    <Button
-        android:text="Users"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/users"
-        android:layout_above="@+id/cloudTextview"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/humidity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:id="@+id/lastData" />
+        android:layout_marginTop="82dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

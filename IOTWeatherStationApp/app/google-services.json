@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "450847671934",
+    "firebase_url": "https://iot-weather-station-app.firebaseio.com",
+    "project_id": "iot-weather-station-app",
+    "storage_bucket": "iot-weather-station-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450847671934:android:a9e3dd86d11a3b90",
+        "android_client_info": {
+          "package_name": "com.mpsp.unipi.iotweatherstation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450847671934-imevndmdfp6lrsea5tearc9j05soqgbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFZ27cWrvSz4eHl4QZ6tcrpNCxeX8bXNI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

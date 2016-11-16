@@ -5,7 +5,7 @@
     <string name="lightTxtV">Ambient light </string>
     <string name="syncBtn">Sync</string>
     <string name="tempValue">-- &#x2103;</string>
-    <string name="humValue">-- %</string>
+    <string name="humValue">-- % RH</string>
     <string name="lightValue">-- %</string>
     <string name="settings">settings</string>
     <string name="about">About</string>

@@ -1,36 +1,30 @@
 package com.mpsp.unipi.iotweatherstation;
 
-/**
- * Created by g90 on 11/14/16.
- */
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-
+class DatabaseHelper extends SQLiteOpenHelper {
+    private DBManager dbManager;
     // Table Name
-    public static final String TABLE_NAME = "WEATHER_DATA";
+    static final String TABLE_NAME = "SETTINGS";
 
     // Table columns
-    public static final String _ID = "_id";
-    public static final String TIME = "tim";
-    public static final String TEMPERATURE = "temperature";
-    public static final String HUMIDITY = "humidity";
-    public static final String LUMINOSITY = "luminosity";
+    static final String _ID = "_id";
+    static final String TEMPERATURE_UNIT = "temperature_unit";
+    static final String SYNC_PERIOD = "sync_period";
 
     // Database Information
-    static final String DB_NAME = "IOT_WEATHER_STATION.DB";
+    private static final String DB_NAME = "SETTINGS.DB";
 
     // database version
-    static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TIME + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " + TEMPERATURE + " REAL NOT NULL, " + HUMIDITY + " REAL NOT NULL, " + LUMINOSITY + " REAL NOT NULL);";
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TEMPERATURE_UNIT + " INTEGER NOT NULL, " + SYNC_PERIOD + " INTEGER NOT NULL);";
 
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

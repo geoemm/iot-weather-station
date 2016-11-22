@@ -1,16 +1,12 @@
 package com.mpsp.unipi.iotweatherstation;
 
-/**
- * Created by g90 on 11/14/16.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DBManager {
+class DBManager {
 
     private DatabaseHelper dbHelper;
 
@@ -18,7 +14,7 @@ public class DBManager {
 
     private SQLiteDatabase database;
 
-    public DBManager(Context c) {
+    DBManager(Context c) {
         context = c;
     }
 
@@ -29,19 +25,20 @@ public class DBManager {
     }
 
     public void close() {
-        dbHelper.close();
+        if (database.isOpen()) {
+            dbHelper.close();
+        }
     }
 
-    public void insert(float temperature, float humidity, float luminosity) {
+    public void insert(int temperatureUni, int sync_per) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseHelper.TEMPERATURE, temperature);
-        contentValue.put(DatabaseHelper.HUMIDITY, humidity);
-        contentValue.put(DatabaseHelper.LUMINOSITY, luminosity);
+        contentValue.put(DatabaseHelper.TEMPERATURE_UNIT, temperatureUni);
+        contentValue.put(DatabaseHelper.SYNC_PERIOD, sync_per);
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.TIME, DatabaseHelper.TEMPERATURE, DatabaseHelper.HUMIDITY, DatabaseHelper.LUMINOSITY };
+        String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.TEMPERATURE_UNIT, DatabaseHelper.SYNC_PERIOD };
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -49,11 +46,10 @@ public class DBManager {
         return cursor;
     }
 
-    public int update(long _id, float temperature, float humidity, float luminosity) {
+    public int update(long _id, int temperatureUni, int sync_per) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.TEMPERATURE, temperature);
-        contentValues.put(DatabaseHelper.HUMIDITY, humidity);
-        contentValues.put(DatabaseHelper.LUMINOSITY, luminosity);
+        contentValues.put(DatabaseHelper.TEMPERATURE_UNIT, temperatureUni);
+        contentValues.put(DatabaseHelper.SYNC_PERIOD, sync_per);
         int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
         return i;
     }

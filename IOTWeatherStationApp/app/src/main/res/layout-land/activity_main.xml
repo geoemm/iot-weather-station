@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardView">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/templayout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="@string/tempTxtV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/textView_temp"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:text="@string/tempValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/tempValue"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:text="@string/tempUnitValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/tempUnitValue"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/humiditylayout"
+                        android:layout_below="@+id/templayout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="@string/humiTxtV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView_Hum"
+                            android:layout_margin="16dp"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:text="@string/humValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/humValue"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:text="@string/humUnitValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/humUnitValue"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/humiditylayout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="@string/lightTxtV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView_light"
+                            android:layout_margin="16dp"
+                            android:textSize="18sp"
+                            android:gravity="start"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:text="@string/lightValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/lightValue"
+                            android:textSize="18sp"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@string/lightUnitValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:id="@+id/lightUnitValue"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_above="@+id/syncBtn"
+                android:layout_below="@+id/cardView"/>
+
+            <Button
+                android:text="@string/syncBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/syncBtn"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="45dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

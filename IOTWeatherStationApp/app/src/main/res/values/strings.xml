@@ -6,6 +6,7 @@
     <string name="syncBtn">Sync Now</string>
     <string name="tempValue">-- </string>
     <string name="tempUnitValue">&#x2103;</string>
+    <string name="tempFarUnitValue">&#x2109;</string>
     <string name="humValue">-- </string>
     <string name="humUnitValue">% RH</string>
     <string name="lightValue">-- </string>
@@ -26,7 +27,7 @@
     <!-- Settings Activity -->
     <string name="title_activity_settings">Settings</string>
     <string name="saveSettings">Save</string>
-    <string name="showinfarenheit">Temperature in Farenheit</string>
+    <string name="showinfarenheit">Temperature in Fahrenheit</string>
     <string name="sync_sec">Sync period(s)</string>
     <string name="sync">Sync period (s)</string>
 

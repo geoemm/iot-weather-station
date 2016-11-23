@@ -49,6 +49,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     int unit;
     private String TAG = MainActivity.class.getSimpleName();
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
     private LineChart mChart;
     boolean enableSync;
     ProgressDialog progressDialog;
+    String tempe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +75,11 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
         if (unit == 0) {
             TextView tv1 = (TextView)findViewById(R.id.tempUnitValue);
-            tv1.setText("C");
+            tv1.setText(getString(R.string.tempUnitValue));
+
         } else {
             TextView tv1 = (TextView)findViewById(R.id.tempUnitValue);
-            tv1.setText("F");
+            tv1.setText(getString(R.string.tempFarUnitValue));
         }
 
         mChart = (LineChart) findViewById(R.id.chart);
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         mChart.setOnChartValueSelectedListener(this);
 
         // enable description text
-        //mChart.getDescription().setEnabled(true);
+        mChart.getDescription().setEnabled(false);
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -105,14 +109,6 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
         // add empty data
         mChart.setData(data);
-
-//        // get the legend (only possible after setting data)
-//        Legend l = mChart.getLegend();
-//
-//        // modify the legend ...
-//        l.setForm(Legend.LegendForm.LINE);
-//        l.setTypeface(mTfLight);
-//        l.setTextColor(Color.WHITE);
 
         XAxis xl = mChart.getXAxis();
         xl.setTypeface(mTfLight);
@@ -361,14 +357,16 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
                         try {
                             JSONObject jObject = new JSONObject(response);
                             JSONObject iotDataObj = jObject.getJSONObject("iot_data");
-                            String tempe = iotDataObj.getString("temperature");
+                            tempe = iotDataObj.getString("temperature");
                             String humi = iotDataObj.getString("humidity");
                             String lumi = iotDataObj.getString("luminosity");
 
+
+                            DecimalFormat df = new DecimalFormat("#.##");
                             if (unit == 0) {
                                 tempTextView.setText(tempe);
                             } else {
-                                tempTextView.setText(String.valueOf(Float.parseFloat(tempe) * 1.8 + 32));
+                                tempTextView.setText(String.valueOf(df.format(Float.parseFloat(tempe) * 1.8 + 32)));
                             }
 
                             humTextView.setText(humi);
@@ -460,7 +458,6 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             delay = cursor.getInt(cursor.getColumnIndex("sync_period"));
             dbManager.close();
         }
-        Toast.makeText(getApplicationContext(), unit + " " + delay, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -468,12 +465,25 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         super.onResume();
 
         getSettings();
+        DecimalFormat df = new DecimalFormat("#.##");
+        final TextView tempTextView = (TextView) findViewById(R.id.tempValue);
         if (unit == 0) {
             TextView tv1 = (TextView)findViewById(R.id.tempUnitValue);
-            tv1.setText("C");
+            tv1.setText(getString(R.string.tempUnitValue));
+            if (tempe == null) {
+                tempTextView.setText("--");
+            } else {
+                tempTextView.setText(tempe);
+            }
+
         } else {
             TextView tv1 = (TextView)findViewById(R.id.tempUnitValue);
-            tv1.setText("F");
+            tv1.setText(getString(R.string.tempFarUnitValue));
+            try {
+                tempTextView.setText(String.valueOf(df.format(Float.parseFloat(tempe) * 1.8 + 32)));
+            } catch (NullPointerException e) {
+
+            }
         }
     }
 

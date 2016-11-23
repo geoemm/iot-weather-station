@@ -35,6 +35,8 @@
             android:paddingBottom="16dp"
             android:id="@+id/temperatureLayout">
 
+
+
             <TextView
                 android:text="@string/showinfarenheit"
                 android:layout_width="wrap_content"
@@ -42,12 +44,12 @@
                 android:id="@+id/textViewUnit"
                 android:layout_gravity="center"/>
 
-            <Spinner
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/unitSpinner"
-                android:layout_margin="16dp"
-                android:entries="@array/unit_array"/>
+                android:id="@+id/checkBox"
+                android:layout_weight="1"
+                android:layout_margin="16dp"/>
 
         </LinearLayout>
 
@@ -66,13 +68,29 @@
                 android:text="@string/sync"
                 android:layout_gravity="center"/>
 
-            <Spinner
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/secondsSpinner"
-                android:layout_margin="16dp"
-                android:entries="@array/sync_seconds_array"
-                android:layout_gravity="center"/>
+                app:srcCompat="@mipmap/ic_add_circle_black_48dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:id="@+id/imageButton2"
+                android:background="@mipmap/ic_add_circle_black_48dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:id="@+id/textView"
+                android:textSize="18sp"
+                android:layout_margin="16dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_remove_circle_black_48dp"
+                android:id="@+id/imageButton"
+                android:background="@mipmap/ic_remove_circle_black_48dp" />
 
         </LinearLayout>
 
@@ -84,6 +102,8 @@
             android:layout_below="@+id/sync_layout"
             android:layout_centerHorizontal="true"
             android:layout_margin="16dp"/>
+
+
 
 
     </RelativeLayout>
